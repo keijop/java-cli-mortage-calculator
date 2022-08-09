@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENTAGE = 100;
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Principal: ");
@@ -17,10 +20,10 @@ public class Main {
         System.out.print("Period (years): ");
         String period = scanner.next();
 
-        Double months = Double.parseDouble(period) / 12;
-        Double monthlyRate = Double.parseDouble(yearlyRate) / 100 / 12;
-        Double payments = Double.parseDouble(period) * 12;
-        Double monthlyMortgagePayment = Double.parseDouble(principal) * (monthlyRate * Math.pow((1 +  monthlyRate), payments)) / ( Math.pow((1 +  monthlyRate), payments)  - 1);
+        Float months = Float.parseFloat(period) / MONTHS_IN_YEAR;
+        Float monthlyRate = Float.parseFloat(yearlyRate) / PERCENTAGE / MONTHS_IN_YEAR;
+        Float payments = Float.parseFloat(period) * MONTHS_IN_YEAR;
+        Double monthlyMortgagePayment = Float.parseFloat(principal) * (monthlyRate * Math.pow((1 +  monthlyRate), payments)) / ( Math.pow((1 +  monthlyRate), payments)  - 1);
 
         NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.getDefault());
         System.out.print("Mortgage: " + formatter.format(monthlyMortgagePayment));
